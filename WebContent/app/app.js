@@ -11,7 +11,7 @@ var app = angular.module('toolrentalsimulator', [
 ]).config(function($urlRouterProvider, $stateProvider) {
     'use strict';  
     $urlRouterProvider.when("/", "home");
-    $urlRouterProvider.when("/test", "/test");
+    $urlRouterProvider.when("#/chat", "/chat");
     $urlRouterProvider.otherwise("/");
     
     $stateProvider
@@ -19,11 +19,11 @@ var app = angular.module('toolrentalsimulator', [
         url: "/home",
         templateUrl: "app/view/index.html",
         controller: "indexCtrl"
-    })/*.state("test", {
-        url: "/test",
-        templateUrl: "app/view/index.html",
-        controller: "indexCtrl"
-    })*/;
+    }).state("chat", {
+        url: "/chat",
+        templateUrl: "app/view/chat/chat.html",
+        controller: "chatCtrl"
+    });
 });
 
 var controllers = angular.module('toolrentalsimulator.controllers', []);
