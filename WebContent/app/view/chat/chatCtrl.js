@@ -19,10 +19,9 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 			//callback to hanlde opne and send a message to server
 			$scope.ws.$on('$open', function () {
 				console.log("callback: $open");
-				console.log("status inside $open: " + $scope.ws.$status());
 				if($scope.ws.$status() == 1){					
 					console.log("chat socket Opened...");
-					$scope.ws.$emit($scope.message);
+					$scope.ws.$emit(name + " say: " + $scope.message);
 				}
 			});
 			
