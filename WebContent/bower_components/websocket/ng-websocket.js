@@ -215,7 +215,8 @@
         };
 
         me.$$send = function (message) {
-            if (me.$ready()) me.$$ws.send(JSON.stringify(message));
+            //if (me.$ready()) me.$$ws.send(JSON.stringify(message));
+        	if (me.$ready()) me.$$ws.send(message);
             else if (me.$$config.enqueue) me.$$queue.push(message);
         };
 
@@ -227,7 +228,8 @@
                 data: data
             };
 
-            me.$$send(message);
+            //me.$$send(message);
+            me.$$send(event);
 
             return me;
         };
