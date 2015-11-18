@@ -20,7 +20,7 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 			$scope.ws.$on('$open', function () {
 				console.log("callback: $open");
 				if($scope.ws.$status() == 1){					
-					console.log("chat socket Opened...");
+					console.log(name + " say: " + $scope.message);
 					$scope.ws.$emit(name + " say: " + $scope.message);
 				}
 			});
@@ -54,11 +54,22 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 		
 		$scope.close = function(){
 			$scope.ws.$close();
+			console.log("close button clicked status is: " + $scope.ws.$status());
+			if($scope.ws.$status() == 3){
+				$scope.ws = null;
+				$scope.status = "Disconnted!";
+			}
 		};
 		
-		$scope.logIn = function(){
+		$scope.join = function(){
 			name = $scope.name;
-			console.log("name is: " + name);
+			console.log("name joined is: " + name);
+			if(!$scope.ws){		
+				socketUtils.setSocket(port, uri);
+				$scope.ws = socketUtils.getSocket(); 
+				$scope.ws.$open();
+				$scope.status = "Connected!";
+			}
 		};
     }
 ]);

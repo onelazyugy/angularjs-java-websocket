@@ -27,7 +27,7 @@ public class ChatSocket implements WebSocketIfc{
 	@Override
 	public void onOpen(Session session) {
 		System.out.println("--------Chat socket open--------");
-		sendMessage(session.getId() + " connected!");
+		sendConnectedMessage(session, session.getId() + " connected!");
 		try{
 			session.getBasicRemote().sendText(session.getId() + " connected!");
 		}catch(IOException e){
@@ -64,6 +64,15 @@ public class ChatSocket implements WebSocketIfc{
 			}catch(IOException e){
 				System.out.println("Error when sending message to client:\n" + e.getMessage());
 			}
+		}
+	}
+	
+	public static void sendConnectedMessage(Session s, String message){
+		try{
+			System.out.println("sending message: " + message);
+			s.getBasicRemote().sendText(message);
+		}catch(IOException e){
+			System.out.println("Error when sending message to client:\n" + e.getMessage());
 		}
 	}
 	
