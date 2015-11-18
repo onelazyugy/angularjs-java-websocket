@@ -4,6 +4,7 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 		var uri = "chatsocket";
 		$scope.ws;
 		var name;
+		$scope.joined = false;
 		
 		$scope.sendMsg = function(){
 			if(!$scope.ws){		
@@ -52,12 +53,13 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 			});
 		};
 		
-		$scope.close = function(){
-			$scope.ws.$close();
+		$scope.exit = function(){
+			//$scope.ws.$close();
 			console.log("close button clicked status is: " + $scope.ws.$status());
-			if($scope.ws.$status() == 3){
+			if($scope.ws != null){
 				$scope.ws = null;
 				$scope.status = "Disconnted!";
+				$scope.joined = false;
 			}
 		};
 		
@@ -69,6 +71,8 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 				$scope.ws = socketUtils.getSocket(); 
 				$scope.ws.$open();
 				$scope.status = "Connected!";
+				console.log("status: " +$scope.ws.$status());
+				$scope.joined = true;
 			}
 		};
     }

@@ -10,6 +10,7 @@
 				    	<input type="text" class="form-control" ng-model="name" placeholder="Name">
 				  	</div>
 			  		<button type="submit" class="btn btn-primary" ng-click="join()">Join</button>	
+			  		<button type="submit" class="btn btn-warning" ng-click="exit()">Exit</button>
 			  		<label>{{status}}</label>		  	
 				</form><hr>
 			</div>
@@ -21,8 +22,7 @@
 				  	<div class="form-group">
 				    	<input type="text" class="form-control" ng-model="message" placeholder="Chat Message">
 				  	</div>
-			  		<button type="submit" class="btn btn-primary" ng-click="sendMsg()">Send</button>
-			  		<button type="submit" class="btn btn-primary" ng-click="close()">Close</button>				  	
+			  		<button type="submit" class="btn btn-primary" ng-click="sendMsg()" ng-disabled="joined==false">Send</button>			  						  	
 				</form>
 			</div>
     	</div>
