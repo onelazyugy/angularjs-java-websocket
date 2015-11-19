@@ -6,15 +6,11 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 		var name;
 		$scope.joined = false;
 		
-		//
-		//var msgFromServer;
-		//
-		
 		$scope.sendMsg = function(){
 			$scope.ws.$emit($scope.message);
 
 			console.log("status after sumbit: " + $scope.ws.$status());			
-			//callback to hanlde opne and send a message to server
+			//callback to handle open and send a message to server
 			$scope.ws.$on('$open', function () {
 				console.log("$open");
 				if($scope.ws.$status() == 1){					
@@ -27,7 +23,6 @@ controllers.controller('chatCtrl', ['$scope', 'socketUtils', '$rootScope', funct
 			$scope.ws.$on('$message', function (messageFromServer) { 
 				console.log("$message");
 				console.log('something incoming from the server: ' + messageFromServer);
-				//msgFromServer += messageFromServer;
 				$scope.msg = messageFromServer;
 				$rootScope.$apply()
 			});	

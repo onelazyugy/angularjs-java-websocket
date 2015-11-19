@@ -4,7 +4,7 @@ controllers.controller('indexCtrl', ['$scope', '$http', '$websocket', '$q', '$ro
 		$scope.msgArray = [];
 		$scope.submit = function(){
 			if(!$scope.ws){				
-				$scope.ws = $websocket.$new('ws://localhost:8087/AngularjsJavaWebSocket/websocket');
+				$scope.ws = $websocket.$new('ws://localhost:8087/angularjs-java-websocket/websocket');
 			} else {
 				$scope.msgArray = [];
 				$rootScope.$apply()
